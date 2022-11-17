@@ -80,7 +80,7 @@ class VariationalAutoEncoder(nn.Module):
             for data in dataloader:
                 data, _ = data
                 data = data.to(device)
-                reconstruction = self.forward(data)
+                reconstruction = self.cuda().forward(data)
                 #mse_loss = criterion(reconstruction, data)
                 loss = ((data - reconstruction)**2).sum() + self.kl_loss
                 optimizer.zero_grad()
